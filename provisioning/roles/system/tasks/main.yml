@@ -6,6 +6,7 @@
   sudo: yes
   apt: pkg=software-properties-common state=latest
   apt: pkg=python-setuptools state=latest
+  apt: pkg=python-dev state=latest
 - name: install pip3
   sudo: yes
   apt: pkg=python3-pip state=latest
@@ -17,10 +18,10 @@
   sudo: yes
   apt: pkg=git state=latest
 - name: clone rep from GitHub
-  git: accept_hostkey=true repo="{{ project_git_url }}" dest="~/{{ name_project }}"
+  git: accept_hostkey=true repo="{{ project_git_url }}" dest="~/{{ intern_repo_path }}"
 - name: ensure supervisor is up to date
   sudo: yes
   apt: pkg=supervisor state=latest
-- name: ensure geniusfeed stop
+- name: ensure "project" stop
   sudo: yes
   supervisorctl: name={{ name_project }} state=stopped

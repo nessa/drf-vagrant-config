@@ -1,20 +1,21 @@
 ---
 
 #Django
-project_git_url: "{{ project_git_url_arg | default('git@github.com:Abrahanfer/geniusfeed.git') }}"
-name_project: "{{ name_project_arg | default('geniusfeed') }}"
-name_app: "{{ name_app_arg | default('geniusfeed') }}"
-url_django_project: "/home/vagrant/{{ name_project }}"
-url_django_app: "/home/vagrant/{{ name_project }}/{{ name_app }}"
+project_git_url: "{{ project_git_url_arg | default('git@github.com:nessa/serenity.git') }}"
+name_project: "{{ name_project_arg | default('amuseapi') }}"
+name_app: "{{ name_app_arg | default('amuseapi') }}"
+intern_repo_path: "{{ intern_repo_path_arg | default('serenity/') }}"
+url_django_project: "/home/vagrant/{{ intern_repo_path }}{{ name_project }}"
+url_django_app: "/home/vagrant/{{ intern_repo_path }}{{ name_project }}/{{ name_app }}"
 
 #Nginx
 domain: "{{ domain_arg | default('192.168.55.55') }}"
 static_folder: "{{ url_django_project }}/static"
 
 # Database settings
-db_name: "{{ db_name_arg | default('db-drf') }}"
-db_user: "{{ db_user_arg | default('drest') }}"
-db_pass: "{{ db_pass_arg | default('drestpass123') }}"
+db_name: "{{ db_name_arg | default('amusedb') }}"
+db_user: "{{ db_user_arg | default('amuseuser') }}"
+db_pass: "{{ db_pass_arg | default('171287') }}"
 
 #Gunicorn
 venv_name: "{{ venv_name_arg | default('gunicorn-env') }}"
