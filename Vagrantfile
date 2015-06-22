@@ -4,6 +4,9 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+# Vagrantfile port.
+PORT_NUMBER = 8002
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -20,16 +23,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: PORT_NUMBER, auto_correct: true
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "private_network", ip: "192.168.55.55"
+  # config.vm.network "private_network", ip: "192.168.55.55"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  # config.vm.network "public_network", ip: "192.168.0.34", bridge: 'en1: Wi-Fi (AirPort)'
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
@@ -123,7 +126,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
    # ansible.sudo = true
-    ansible.extra_vars = { ansible_ssh_user: 'vagrant', remote_user: 'vagrant'}
+    ansible.extra_vars = { ansible_ssh_user: 'vagrant', remote_user: 'vagrant', port_arg: PORT_NUMBER}
     ansible.raw_ssh_args = ["-o UserKnownHostsFile=/dev/null"]
     ansible.playbook = "provisioning/playbook.yml"
   end

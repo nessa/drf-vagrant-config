@@ -9,7 +9,8 @@ url_django_project: "/home/vagrant/{{ intern_repo_path }}{{ name_project }}"
 url_django_app: "/home/vagrant/{{ intern_repo_path }}{{ name_project }}/{{ name_app }}"
 
 #Nginx
-domain: "{{ domain_arg | default('192.168.55.55') }}"
+domain: "{{ domain_arg | default('10.0.240.21') }}"
+port: "{{ port_arg | default('8002') }}"
 static_folder: "{{ url_django_project }}/static"
 
 # Database settings
