@@ -14,6 +14,9 @@
 - name: install pip again with easyintall
   sudo: yes
   command: python3 -m easy_install pip
+- name: install dependencies for psycopg2
+  sudo: yes
+  shell: "apt-get -y build-dep python-psycopg2"
 - name: install git
   sudo: yes
   apt: pkg=git state=latest

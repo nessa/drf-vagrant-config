@@ -3,7 +3,6 @@
   sudo: yes
   apt: pkg=libpq-dev state=latest
   apt: pkg=python-dev state=latest
-  apt: pkg=python-psycopg2 state=latest
 - name: install and update postgresql
   sudo: yes
   apt: pkg=postgresql state=latest
