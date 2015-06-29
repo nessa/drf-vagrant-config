@@ -21,7 +21,7 @@
   sudo: yes
   apt: pkg=git state=latest
 - name: clone rep from GitHub
-  git: accept_hostkey=true repo="{{ project_git_url }}" dest="~/{{ intern_repo_path }}"
+  git: accept_hostkey=true repo="{{ project_git_url }}" dest="~/{{ name_project }}"
 - name: ensure supervisor is up to date
   sudo: yes
   apt: pkg=supervisor state=latest

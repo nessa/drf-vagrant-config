@@ -3,7 +3,6 @@
   sudo: yes
   pip: executable=pip3 name=virtualenv
 - name: create virtual env and init
-  #sudo: yes
   command: virtualenv "{{ venv_name }}"
 - name: install dependencies
   pip: executable=pip3 virtualenv="/home/vagrant/{{ venv_name }}" requirements="{{ url_django_project }}/reqs/all.txt"
