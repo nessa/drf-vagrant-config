@@ -25,6 +25,6 @@
 - name: ensure supervisor is up to date
   sudo: yes
   apt: pkg=supervisor state=latest
-- name: ensure "project" stop
+- name: ensure project stop
   sudo: yes
   supervisorctl: name={{ name_project }} state=stopped

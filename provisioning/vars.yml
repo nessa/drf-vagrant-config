@@ -7,7 +7,7 @@ name_app: "{{ name_app_arg | default('amuseapi') }}"
 url_django_project: "/home/vagrant/{{ name_project }}/{{ name_app }}"
 
 #Nginx
-domain: "{{ domain_arg | default('10.0.240.24') }}"
+domain: "{{ domain_arg | default('192.168.1.6') }}"
 port: "{{ port_arg | default('8002') }}"
 static_folder: "{{ url_django_project }}/static"
 
