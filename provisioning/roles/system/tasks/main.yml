@@ -1,30 +1,37 @@
 ---
 - name: update and upgrading packages
-  sudo: yes
+  become: yes
   apt: update_cache=yes upgrade=safe
 - name: install software-properties-common
-  sudo: yes
-  apt: pkg=software-properties-common state=latest
-  apt: pkg=python-setuptools state=latest
-  apt: pkg=python-dev state=latest
+  become: yes
+  apt: pkg={{ item }} state=latest
+  with_items: 
+    - software-properties-common
+    - python-setuptools
+    - python-dev
 - name: install pip3
-  sudo: yes
-  apt: pkg=python3-pip state=latest
-  apt: pkg=python3-setuptools state=latest
+  become: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python3-pip
+    - python3-setuptools
 - name: install pip again with easyintall
-  sudo: yes
+  become: yes
   command: python3 -m easy_install pip
 - name: install dependencies for psycopg2
-  sudo: yes
-  shell: "apt-get -y build-dep python-psycopg2"
+  become: yes
+  apt: pkg=python-psycopg2 state=latest install_recommends=yes
 - name: install git
-  sudo: yes
+  become: yes
   apt: pkg=git state=latest
 - name: clone rep from GitHub
   git: accept_hostkey=true repo="{{ project_git_url }}" dest="~/{{ name_project }}"
 - name: ensure supervisor is up to date
-  sudo: yes
+  become: yes
   apt: pkg=supervisor state=latest
+- stat: path=/etc/supervisor/conf.d/{{ name_project }}.conf
+  register: supervisor_conf
 - name: ensure project stop
-  sudo: yes
+  when: supervisor_conf.stat.exists == True
+  become: yes
   supervisorctl: name={{ name_project }} state=stopped

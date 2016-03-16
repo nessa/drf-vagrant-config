@@ -1,6 +1,6 @@
 ---
 - name: install virtualenv
-  sudo: yes
+  become: yes
   pip: executable=pip3 name=virtualenv
 - name: create virtual env and init
   command: virtualenv "{{ venv_name }}"

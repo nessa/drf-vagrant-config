@@ -1,4 +1,7 @@
 ---
+- name: reread supervisor
+  become: yes
+  command: supervisorctl reread
 - name: restart supervisor
-  sudo: yes
+  become: yes
   supervisorctl: name={{ name_project }} state=restarted
