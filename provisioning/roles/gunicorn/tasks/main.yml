@@ -12,4 +12,4 @@
 - name: copy shell script to be run by supervisor #run gunicorn job to serve project
   template: src=gunicorn_start.j2 dest="/home/vagrant/gunicorn_start"
 - name: mark as executable shell script
-  file: path=gunicorn_start state=touch mode="a=x"
+  file: path=gunicorn_start state=touch mode="a+x"
