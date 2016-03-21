@@ -10,13 +10,13 @@
   template: src="nginx.conf.j2" dest="/etc/nginx/sites-available/{{ name_project }}"
   notify: restart nginx
 - name: check the current symlink
-  stat: path=/etc/nginx/sites-enabled
+  stat: path=/etc/nginx/sites-enabled/{{ name_project }}
   register: sites_enabled
-- name: remove the folder if exists
+- name: remove the file if exists
   become: yes
-  when: sites_enabled.stat.isdir is defined and sites_enabled.stat.isdir
-  file: path=/etc/nginx/sites-enabled state=absent
+  when: sites_enabled.stat.exists == True
+  file: path=/etc/nginx/sites-enabled/{{ name_project }} state=absent
 - name: symlink to sites-enabled
   become: yes
-  file: src=/etc/nginx/sites-available/{{ name_project }} dest=/etc/nginx/sites-enabled state=link force=yes
+  file: src=/etc/nginx/sites-available/{{ name_project }} dest=/etc/nginx/sites-enabled/{{ name_project }}  state=link force=yes
   notify: restart nginx
