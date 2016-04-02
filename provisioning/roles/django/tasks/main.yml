@@ -1,4 +1,10 @@
 ---
+- name: ensure project log dir exists
+  become: yes
+  file: path=/var/log/django state=directory owner="vagrant" group="vagrant" mode="755"
+- name: ensure project log file exists
+  become: yes
+  file: path=/var/log/django/{{ name_project }}.log owner="vagrant" group="vagrant" state=touch mode="755"
 - name: install virtualenv
   become: yes
   pip: executable=pip3 name=virtualenv
