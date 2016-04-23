@@ -15,6 +15,7 @@ static_folder: "{{ url_django_project }}/static"
 db_name: "{{ db_name_arg | default('serenitydb') }}"
 db_user: "{{ db_user_arg | default('serenityuser') }}"
 db_pass: "{{ db_pass_arg | default('123456') }}"
+secret_key: "{{ secret_key_arg | default('secretkey') }}"
 
 #Gunicorn
 venv_name: "{{ venv_name_arg | default('gunicorn-env') }}"
