@@ -7,14 +7,14 @@ name_app: "{{ name_app_arg | default('amuseapi') }}"
 url_django_project: "/home/vagrant/{{ name_project }}/{{ name_app }}"
 
 #Nginx
-domain: "{{ domain_arg | default('192.168.1.55') }}"
+domain: "{{ domain_arg | default('192.168.1.54') }}"
 port: "{{ port_arg | default('8002') }}"
 static_folder: "{{ url_django_project }}/static"
 
 # Database settings
-db_name: "{{ db_name_arg | default('amusedb') }}"
-db_user: "{{ db_user_arg | default('amuseuser') }}"
-db_pass: "{{ db_pass_arg | default('171287') }}"
+db_name: "{{ db_name_arg | default('serenitydb') }}"
+db_user: "{{ db_user_arg | default('serenityuser') }}"
+db_pass: "{{ db_pass_arg | default('123456') }}"
 
 #Gunicorn
 venv_name: "{{ venv_name_arg | default('gunicorn-env') }}"
