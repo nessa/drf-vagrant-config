@@ -1,5 +1,3 @@
 ---
 - name: Run django migrate to create tables in DB
   command: "/home/vagrant/{{ venv_name }}/exec python {{url_django_project}}/manage.py migrate"
-- name: Run django fixture to load users initial data
-  command: "/home/vagrant/{{ venv_name }}/exec python {{url_django_project}}/manage.py loaddata {{ url_django_project }}/recipes/fixtures/initial_data.json"
